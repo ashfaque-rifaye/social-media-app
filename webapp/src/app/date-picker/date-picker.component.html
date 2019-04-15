@@ -1,0 +1,20 @@
+
+
+<div class = "calendar-box">
+	<div class = "col-year">
+		<span><i (click) = "changeMonth($event, 'PREVIOUS YEAR')"class="icon-left fas fa-caret-left"></i></span>	
+		<span class= "year-show">{{year}}</span>	
+		<span><i (click) = "changeMonth($event, 'NEXT YEAR')" class="icon-right fas fa-caret-right"></i></span>
+	</div>
+	<div class="col-month">
+		<span><i (click) = "changeMonth($event, 'PREVIOUS MONTH')" class="icon-left fas fa-caret-left"></i></span>	
+		<span class= "year-show">{{month[monthVal]}}</span>
+		<span><i (click) = "changeMonth($event, 'NEXT MONTH')" class="icon-right fas fa-caret-right"></i></span>
+	</div>
+	<div class="col-day">
+		<span class="day-show"  *ngFor = "let key of day">{{key}}</span>	
+	</div>
+	<div class= "">
+		<div class="col-date col-padd-area" ccMonthYearChangeReflector [ngClass]="{'isSelected': (key !== null && key === sampleDate.getDate()) }" *ngFor = "let key of date | monthValue : year : monthVal" (click)="setDate(key)">{{key}}</div></div>
+
+	</div>	

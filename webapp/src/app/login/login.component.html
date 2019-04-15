@@ -1,0 +1,51 @@
+<div class = "body">
+
+  <!-- ****Angular Reactive forms *** -->
+<!--In reactive form, we build our form design in the component class instead of component template file.
+ This provides us more flexibility, keep your logic in component class file, 
+ instead of component template file. This makes our component template clean and simple. -->
+
+
+ <form class = "login-signup-form" [formGroup] = "loginForm" (ngSubmit) = "onSubmit()"> <!-- This should be in form and not in div tag. -->
+  <div>
+    <input class = "login-input" type="text" placeholder = "First Name" formControlName = "firstName" />
+  </div>
+  <div >
+    <input class = "login-input" type="text" placeholder = "Last Name" formControlName = "lastName" />
+  </div>
+  <div >
+    <input class = "login-input" type="text" placeholder = "User Name" formControlName = "userName"   />
+    <div *ngIf = "loginForm.controls.userName.errors" >
+      <span *ngIf = "loginForm.controls.userName.errors.required" class = "error-info">Username is Required   </span>
+    </div>
+  </div>
+  <div formGroupName="pwd">
+    <div>
+      <input class = "login-input" type = "password" placeholder = "Password" formControlName = "password" required/>
+    </div>
+    <div>
+      <input class = "login-input" type = "password" placeholder = "Confirm Password" formControlName = "confirmPassword" required/>
+    </div>
+  </div>
+  <div>
+    <input class = "login-input" type="date" placeholder = "Date of Birth" formControlName = "dob" />
+  </div>
+  <div >
+    <select class = "login-input" placeholder = "Gender" formControlName = "genders" >
+      <option *ngFor="let eachGender of genderList" >{{eachGender}}</option>
+    </select>
+  </div>
+  <div >
+    <select  *ngIf = "countriesList" class = "login-input" placeholder = "Country" formControlName = "country" >
+      <option *ngFor="let key of countriesList">{{key}}</option>
+    </select>
+  </div>
+  <div>
+    <button type = "submit">SignUp</button>
+    <button type = "submit">Login</button>
+  </div>
+
+</form>
+
+</div>
+

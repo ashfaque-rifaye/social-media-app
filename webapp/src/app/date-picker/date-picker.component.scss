@@ -1,0 +1,168 @@
+
+/* Calendar - Box to display Calendar with Date/ year and day*/
+.calendar-box{
+	position: absolute;
+	color: #ffffff;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 12rem;
+	height: 14rem;
+	background: -webkit-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+	background: -o-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+	background: linear-gradient(to bottom,#ff6ec4,#7873f5)!important;
+	border-radius: 6px;
+
+}
+
+/* Class to apply CSS for Year alone */
+.col-year{
+	//position: relative;
+	width: 100%;
+	font-size: 0.8rem;
+	text-align: center; 
+	padding: 5px 0px;	
+}
+
+/* Year - CSS */
+.year-show{
+	display: inline-block;
+	width: 125px;
+}
+
+/* Class to apply CSS for Month */
+.col-month{
+	//position: relative;
+	width: 100%;
+	font-size: 0.8rem;
+	text-align: center; 
+	padding: 5px 0px;
+
+
+}
+
+/* Class for Left and Righ Arrows - START */
+
+.icon-left{
+	//=position: absolute;
+	display: inline-block;
+	font-weight: 900;
+	text-align: left;
+	font-size: 12px;
+	
+
+	&:hover{
+		cursor: pointer;
+	}
+}
+
+.icon-right{
+    //position: absolute;
+    display: inline-block;
+    font-weight: 900;
+    font-size: 12px;
+    text-align: right;
+
+    &:hover{
+    	cursor: pointer;
+    }
+
+}
+
+/* Class for Left and Right Arrows - END */
+
+
+
+
+/* Common padding area for days */
+.col-padd-area{
+	padding: 6px 6px;
+}
+
+/* Date - CSS */
+.col-date{
+	display: inline-table;  
+	font-size: 12px;
+	width: 15px;
+	height: 0px;
+	text-align: center;
+	line-height: 18px;	
+	border: none;
+
+	/*On Hovering Dates*/
+	&:hover{
+		cursor: pointer;
+		background-clip: content-box !important;
+		border-radius: 18px;
+		background: linear-gradient(to bottom, #FAFAFA, #FAFAFA);
+		color: black;
+		transform: translateY(-0.5px) scale(1);
+		transition: transform 0.1s;
+
+	//Aliter:
+	// background: linear-gradient(to right, #c4e0e594, #4ca1af85);
+	// background: #4AC29A;  /* fallback for old browsers */
+	// background: -webkit-linear-gradient(to right, #BDFFF3, #4AC29A);  /* Chrome 10-25, Safari 5.1-6 */
+	// background: linear-gradient(to right, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	// background: #4AC29A;  /* fallback for old browsers */
+	// background: -webkit-linear-gradient(to bottom, #4ac29a, #4ac29a52);  /* Chrome 10-25, Safari 5.1-6 */
+	// background: linear-gradient(to bottom, #4ac29a, #4ac29a52);;
+
+}
+}
+
+.col-day{
+	width: 100%;
+	padding: 2px 0px;
+    // background-color: #2b18dc21;
+    text-align: center;
+    text-transform: capitalize;
+
+}
+
+.day-show{
+	display: inline-block;
+	width: 24px;
+	font-size: 8px;
+	margin-right: 3px;
+	border-radius: 6px;
+	background: linear-gradient(to right, #ff6ec400, #ffff);
+	color: black;
+	// background: #1c92d2;  /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #c8d5b900, #8fc0a980);  /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #c8d5b900, #8fc0a980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+
+
+.attach-date-class{
+	background-clip: content-box !important;
+	border-radius: 16px;
+	background: #fafafa;
+	color: #ff6ec4;
+	font-weight: 400;
+
+	// background: #4AC29A;  /* fallback for old browsers */
+	// background: -webkit-linear-gradient(to bottom, #4ac29a, #4ac29a52);  /* Chrome 10-25, Safari 5.1-6 */
+	// background: linear-gradient(to bottom, #4ac29a, #4ac29a52);			
+
+}
+
+.isSelected{
+	background-clip: content-box !important;
+	border-radius: 16px;
+	background: linear-gradient(to right,#64f1ae 0%,#34de76 100%);
+
+	// background: #4AC29A;  /* fallback for old browsers */
+	// background: -webkit-linear-gradient(to bottom, #4ac29a, #4ac29a52);  /* Chrome 10-25, Safari 5.1-6 */
+	// background: linear-gradient(to bottom, #4ac29a, #4ac29a52);	
+	// background-image: -webkit-gradient(linear,left top,right top,from(#ffecd2),to(#fcb69f));
+	// background-image: -webkit-linear-gradient(left,#ffecd2 0,#fcb69f 100%);
+	// background-image: -o-linear-gradient(left,#ffecd2 0,#fcb69f 100%);
+	// background-image: linear-gradient(to right,#ffecd2 0,#fcb69f 100%);
+
+}
+
+

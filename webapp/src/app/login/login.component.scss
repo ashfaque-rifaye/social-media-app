@@ -1,0 +1,54 @@
+
+@import url('https://fonts.googleapis.com/css?family=Arvo|Bree+Serif|Dosis:600|Indie+Flower|PT+Sans:700|Quicksand:500|Sedgwick+Ave');
+
+$font-Dosis: 'Dosis';
+.login-signup-form {  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin:auto;
+}
+
+input[placeholder]{
+    font-family: $font-Dosis, sans-serif;
+}
+
+div {
+    padding : 5px;
+          
+
+}
+
+.login-input{
+    padding: 5px;
+    border: 1px solid #0089ff38;
+    border-radius: 5px;
+    
+
+} 
+
+.error-info{
+    font-size: .8rem;
+    font-weight: 400;
+    font-family: 'PT Sans', sans-serif;
+    color: orangered;
+    padding-left: 2rem;
+    &:before{
+        content: "*";       
+
+    }
+}
+
+/* .login-signup-form{ 
+    display: flex;
+    margin:auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+} */
+
