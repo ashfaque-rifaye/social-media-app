@@ -15,6 +15,6 @@
 		<span class="day-show"  *ngFor = "let key of day">{{key}}</span>	
 	</div>
 	<div class= "">
-		<div class="col-date col-padd-area" ccMonthYearChangeReflector [ngClass]="{'isSelected': (key !== null && key === sampleDate.getDate()) }" *ngFor = "let key of date | monthValue : year : monthVal" (click)="setDate(key)">{{key}}</div></div>
+		<div class="col-date col-padd-area" ccMonthYearChangeReflector [dateValSelected] = "dateSelected" [ngClass]="{'isSelected': (key !== null && key === sampleDate.getDate()) }" *ngFor = "let key of date | monthValue : year : monthVal" (click)="setDate(key)">{{key}}</div></div>
 
 	</div>	

@@ -1,12 +1,14 @@
 
 
 import { Component, OnInit, Directive, Input, Output, OnChanges, EventEmitter, HostBinding, HostListener,ChangeDetectionStrategy } from '@angular/core';
-import {HomepageService} from '../homepage/homepage.service';
 
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Utility } from '../util/utility';
+import { DatePipe } from '@angular/common';
 
 import { ElementRef } from '@angular/core';
 import { Renderer2, RendererFactory2, RendererType2 } from '@angular/core';
+import { DatePickerInterface } from './date-picker-interface';
 //The ElementRef gives the directive direct access to the DOM element upon which it’s attached.
 //ElementRef itself is a wrapper for the actual DOM element which we can access via the property nativeElement,
 
@@ -19,6 +21,8 @@ import { Renderer2, RendererFactory2, RendererType2 } from '@angular/core';
 })
 export class MonthYearChangeReflectorDirective implements OnChanges{ 
 
+  @Input('dateValSelected') dateValSel : Date; 
+
   @HostListener('click', ['$event'])
   onClick(btn) {
     if(!this.el.nativeElement.classList.contains('attach-date-class')){
@@ -30,6 +34,7 @@ export class MonthYearChangeReflectorDirective implements OnChanges{
 
     }// this.rendererEl.setStyle(this.el.nativeElement,'background-color','red');
  }
+
   
   private rendererEl : Renderer2;
   private rendererType: RendererType2;
@@ -40,7 +45,7 @@ export class MonthYearChangeReflectorDirective implements OnChanges{
   }
 
   ngOnChanges(){
-    this.rendererEl.setStyle(this.el.nativeElement, 'background', 'blue'); 
+    // this.rendererEl.setStyle(this.el.nativeElement, 'background', 'blue'); 
 
   }
 }
@@ -106,30 +111,43 @@ The PipeTransform interface:
 })
 export class DatePickerComponent implements OnInit {
 
-
-  // date: Array<number> = [31,28,31,30,31,30,31,31,30,31,30,31];
+  @Input() options: DatePickerInterface;	
   day: Array<string> =  ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
   month: Array<string> = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   year = new Date().getFullYear();
   monthVal =  new Date().getMonth();
   date: Array<number> = [];
   sampleDate = new Date();
+  displayFormat: string;
 
-  @Output() dateSelected = new EventEmitter<Date>();
 
-  constructor(public homePageService : HomepageService) {
+  @Output() dateSelected = new EventEmitter<string>();
+
+  constructor(private datePipe: DatePipe) {
     // this.date[1] = (((this.year % 4 == 0) && (this.year % 100 != 0)) || (this.year % 400 == 0)) ? 29 : 28 ;
 
   }
 
 
   ngOnInit() {
-  	this.getAllPosts();
     // this.findLeapYear(this.year);
   }
 
   setDate($event: any){
-    this.dateSelected.emit(new Date($event,this.monthVal,this.year));
+  	let date = new Date(this.year,this.monthVal,$event);
+  	if(!Utility.isNullOrEmpty(this.options) &&
+  			!Utility.isNullOrEmpty(this.options.displayFormat)){
+  		this.dateSelected.emit(this.formatDate(date, this.options.displayFormat));
+  	}else{
+  		this.dateSelected.emit(this.formatDate(date, 'dd-MMM-yyyy')); //Default format - 'DD-MMM-YYYY'
+  	}
+    // this.dateSelected.emit(date);
+  }
+
+  private formatDate(date: Date, format: string): string{
+  	let stringDateVal = '';
+  	stringDateVal = this.datePipe.transform(date, format);
+  	return stringDateVal;
   }
 
   changeMonth(event, action){
@@ -144,18 +162,7 @@ export class DatePickerComponent implements OnInit {
     }
   }
 
-  private getAllPosts(){
-  	this.homePageService.getAllPosts().subscribe(
-      data =>
-      {
-        alert(data);
-      },
-      err =>{
-
-        }
-      );
-   }
-  		
+ 
   	
 
 

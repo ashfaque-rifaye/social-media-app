@@ -1,0 +1,7 @@
+<div>
+	<div>
+		<input type="text" name="date" (focus)="showCalendar($event)" [(ngModel)] = "dateValue"/>
+
+	</div>
+	<date-picker *ngIf="showDatePicker" (dateSelected) = "daveValueGetter($event)" > </date-picker>
+</div>
