@@ -1,0 +1,165 @@
+.form-signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  min-height: 65vh;
+  transform: translateY(2rem);
+  margin: auto;
+  transition: all 1s;
+  transition-delay: .5s;
+  -webkit-animation-name: fadingAnimation;
+  animation-name: fadingAnimation;
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  backface-visibility: hidden;
+}
+
+//Add to aniimations.
+
+@-webkit-keyframes fadingAnimation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+
+  
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0); 
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadingAnimation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0); 
+    transform: translateX(0);
+  }
+}
+
+.form-control {
+  width: 50%;
+  position: relative;
+  text-align: left;
+}
+
+
+.form-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    min-height: 75%;
+    margin: auto;
+
+
+    &-options {
+        color: $primary-blue-login;
+        font-size: 1.5rem;
+        text-align: left;   
+        font-family: "Be Vietnam", sans-serif;
+
+    }
+}
+
+
+
+.card {
+  &-right {
+    background: $primary-blue-login;
+    float: right;
+    width: 50%;
+    height: 100vh;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-left {
+    background: #ffffff;
+    float: left;
+    width: 50%;
+    height: 100vh;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.split {
+  width: 100%;
+  text-align: center;
+}
+
+.welcome {
+  font-size: 3rem;
+  transform: translateY(8rem);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  
+
+  &-header {
+    color: #ffffff;
+    display: block;
+    font-weight: 600;
+
+    &-blue {
+      color: $primary-blue-login;
+      font-weight: 600;
+    }
+  }
+
+  &-title {
+    color: #ffffff;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-size: 1.75rem;
+    width: 50%;
+    margin: 2rem auto;
+    display: block;
+  }
+}
+
+.line {
+  display: block;
+  padding-bottom: 5px;
+  width: 20%;
+  margin: 20px auto;
+
+  &-white {
+    border-top: 2px solid #ffff;
+  }
+
+  &-blue {
+    border-top: 2px solid $primary-blue-login;
+  }
+}
+
+
+.is-invalid {
+    border-bottom: 1.5px solid red !important; 
+    &::placeholder {
+        /* Most modern browsers support this now. */
+        color: red !important;
+        font-weight: 500;;
+    }
+}
+
+.adjust{
+    transform: translateY(1rem);
+    transition: .2s linear;
+}

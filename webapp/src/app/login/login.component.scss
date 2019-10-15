@@ -1,45 +1,188 @@
+@import url("https://fonts.googleapis.com/css?family=Arvo|Bree+Serif|Dosis:600|Indie+Flower|PT+Sans:700|Quicksand:500|Sedgwick+Ave");
 
-@import url('https://fonts.googleapis.com/css?family=Arvo|Bree+Serif|Dosis:600|Indie+Flower|PT+Sans:700|Quicksand:500|Sedgwick+Ave');
+@import url("https://fonts.googleapis.com/css?family=Be+Vietnam:300,300i,400,400i,500i&display=swap");
 
-$font-Dosis: 'Dosis';
-.login-signup-form {  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    min-height: 100vh;
-    margin:auto;
-}
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif+JP:200,300,400,500&display=swap");
 
-input[placeholder]{
-    font-family: $font-Dosis, sans-serif;
-}
+@import url("https://fonts.googleapis.com/css?family=Salsa&display=swap");
 
-div {
-    padding : 5px;
-          
+@import url("https://fonts.googleapis.com/css?family=Katibeh&display=swap");
 
-}
+$font-Dosis: "Dosis";
 
-.login-input{
-    padding: 5px;
-    border: 1px solid #0089ff38;
-    border-radius: 5px;
-    
 
-} 
 
-.error-info{
-    font-size: .8rem;
-    font-weight: 400;
-    font-family: 'PT Sans', sans-serif;
-    color: orangered;
-    padding-left: 2rem;
-    &:before{
-        content: "*";       
+.input {
+  padding: 5px;
+  border: none;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
 
+  &-signup {
+    caret-color: #ffff; //For changing cursor color.
+    border-bottom: 1.5px solid #ffff;
+    font-family: "Salsa", cursive;
+    font-weight: 300;
+    color: #ffffff;
+
+    &::-webkit-input-placeholder {
+      /* WebKit, Blink, Edge */
+      color: #ffffff;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
     }
+    &:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: #ffffff;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #ffffff;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #ffffff;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #ffffff;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    &::placeholder {
+      /* Most modern browsers support this now. */
+      color: #ffffff;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+  }
+
+  &-login {
+    caret-color: #3930d9; //For changing cursor color.
+    border-bottom: 1.5px solid #3930d9;
+    font-family: "Salsa", cursive;
+    font-weight: 300;
+    color: #3930d9;
+
+    &::-webkit-input-placeholder {
+      /* WebKit, Blink, Edge */
+      color: #BDBDBD;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+    &:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: #BDBDBD;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #BDBDBD;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #BDBDBD;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #BDBDBD;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    &::placeholder {
+      /* Most modern browsers support this now. */
+      color: #BDBDBD  ;
+      font-family: "Be Vietnam", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.error-info {
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: "Katibeh", cursive;
+  color: red;
+  /* padding-left: 40%; */
+  background: #ffff;
+  width: auto;
+  display: inline-flex;
+  border-radius: .3rem;
+  padding: 0px 3px 4px 3px;
+  border: 0.4px solid red;
+  
+  &:before {
+    content: "*";
+  }
+}
+
+.form-terms {
+  font-family: "Be Vietnam", sans-serif;
+  color: #ffffff;
+}
+
+/* To add a line between word/words */
+.form-button-separation {
+  display: block;
+  position: relative;
+  color: #ffff;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-top: 0.2rem solid #ffff;
+    width: 40%;
+    left: 55%;
+    margin-left: 0.5rem;
+    transform: translateY(0.3rem);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    border-top: 0.2rem solid #ffff;
+    width: 40%;
+    right: 55%;
+    margin-right: 0.5rem;
+    transform: translateY(0.3rem);
+  }
 }
 
 /* .login-signup-form{ 
@@ -51,4 +194,3 @@ div {
     text-align: center;
     min-height: 100vh;
 } */
-

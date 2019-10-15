@@ -4,6 +4,8 @@ import {FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import {LoginService} from '../../app/login/login.service';
 
+import {Utility} from '../util/utility';
+
 
 /** FormControl – Tracks the value and validation status of an individual form control.
     FormGroup  – Tracks the value and validity state of a group of FormControl instances.
@@ -11,8 +13,10 @@ import {LoginService} from '../../app/login/login.service';
     FormBuilder – A service that is used to build FormGroups easily. Creating form control instances manually can become repetitive when dealing with multiple forms. 
     The FormBuilder service provides convenient methods for generating controls.
     The FormBuilder service has three methods: control(), group(), and array().
-     These are factory methods for generating instances in your component classes including form controls, form groups, and form arrays.  
- */
+    These are factory methods for generating instances in your component classes including form controls, form groups, and form arrays.  
+    ControlValueAccessor: It creates the bridge between Angular FormControl instances and native DOM elements.
+ 
+     */
 
 
 
@@ -23,32 +27,83 @@ import {LoginService} from '../../app/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+  signupForm: FormGroup;
+  loginForm : FormGroup;
   countriesList: Array<any> = [];
-  genderList: Array<any> = [null ,'Male', 'Female'];
+  genderList: Array<any> = ['Male', 'Female'];
+  showHideSignupSection:boolean ;
+  showForm: boolean;
+  submitted : boolean = false;
 
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) { }
-
-  ngOnInit() {
-
-  	this.getListOfCountries();
-    this.loginForm = this.fb.group({
-      firstName: new FormControl('My NaMe', [Validators.required, Validators.maxLength(15)]),
-      lastName: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-      userName: new FormControl('', Validators.required),
-      emailId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-z0-9_\.]+@[a-zA-Z]+\.[a-zA-Z]+')]),
-      pwd:  new FormGroup({ 
-        password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$')]),
-        confirmPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$')])
-      }),
-      dob: new FormControl(),
-      country: new FormControl(),
-      genders: new FormControl('')
-    });
-    
+  constructor(private fb: FormBuilder, private loginService: LoginService) { 
   }
 
+  ngOnInit() {
+    this.showHideSignupSection = true;
+    this.showForm = false;
+
+    this.getListOfCountries();
+    this.loginForm = this.fb.group({
+      userID: new FormControl('', Validators.required),
+      pwd: new FormControl('', Validators.required)
+    })
+
+
+    this.signupForm = this.fb.group({
+      // firstName: new FormControl('', [Validators.required, Validators.maxLength(15)]), Note - this is alternate declaration.
+      // name: ['', Validators.required, Validators.maxLength(25)],
+      emailId: ['', Validators.required, Validators.pattern('[a-zA-z0-9_\.]+@[a-zA-Z]+\.[a-zA-Z]+')],
+      userID: ['', Validators.required],
+      password:  new FormGroup({ 
+        pwd: new FormControl('', [Validators.required, Validators.minLength(6), 
+                    Validators.pattern('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$')]),
+        confirmPwd: new FormControl('', [Validators.required, Validators.minLength(6),
+               this.validateAreEqual.bind(this)]
+      )}),
+      dob:  ['', Validators.required],
+      genders: ['', Validators.required]
+    }, {
+    });
+    
+    console.log(this.signupForm.value)
+  }
+
+
+  private validateAreEqual(fieldControl: FormControl) {
+    return (!Utility.isNullOrEmpty(fieldControl.value) 
+      && !Utility.isNullOrEmpty(this.signupForm.controls.password.get('pwd').value) 
+      &&  fieldControl.value === this.signupForm.controls.password.get('pwd').value) ? null : {
+        mismatch: true
+    };
+}
+
+  get f() { return this.signupForm.controls; }
+
+  triggerSignUp(event){
+    this.showHideSignupSection = false;
+    this.showForm = true;
+  }
+
+  onChangeGender(event : any){
+    this.signupForm.controls.genders.setValue(event.target.value, 
+      {onlySelf: true});
+  }
+
+
+
+  onSignUp(){
+
+    this.submitted = true;
+    console.log(this.signupForm);
+    //If the validations are not successful, then do nothing
+    if(!this.signupForm.valid){
+      return;
+    }
+    else{
+      alert("Account created successfully");
+    }
+  }
 
   /*
 
@@ -70,7 +125,7 @@ export class LoginComponent implements OnInit {
   
 
   onSubmit(){
-    console.log(this.loginForm);
+    console.log(this.signupForm);
 
   }
 

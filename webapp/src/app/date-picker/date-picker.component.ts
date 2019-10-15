@@ -17,7 +17,6 @@ import { DatePickerInterface } from './date-picker-interface';
 
 @Directive({
   selector: "[ccMonthYearChangeReflector]",
-  // Host: 
 })
 export class MonthYearChangeReflectorDirective implements OnChanges{ 
 
@@ -52,7 +51,6 @@ export class MonthYearChangeReflectorDirective implements OnChanges{
 
 @Directive({
   selector: "[ccDateValueGenerator]",
-  // Host: 
 })
 export class DateValueGenerator implements OnChanges{ 
   
@@ -97,7 +95,9 @@ export class MonthValueGenerator implements PipeTransform {
 4.You must include your pipe in the declarations array of the AppModule.
 
 The PipeTransform interface:
-  The transform method is essential to a pipe. The PipeTransform interface defines that method and guides both tooling and the compiler. Technically, it's optional; Angular looks for and executes the transform method regardless.
+  The transform method is essential to a pipe.
+  The PipeTransform interface defines that method and guides both tooling and the compiler.
+  Technically, it's optional; Angular looks for and executes the transform method regardless.
 
 */
 
@@ -141,7 +141,6 @@ export class DatePickerComponent implements OnInit {
   	}else{
   		this.dateSelected.emit(this.formatDate(date, 'dd-MMM-yyyy')); //Default format - 'DD-MMM-YYYY'
   	}
-    // this.dateSelected.emit(date);
   }
 
   private formatDate(date: Date, format: string): string{

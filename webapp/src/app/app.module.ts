@@ -6,7 +6,8 @@ import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'; //Import the Angular HttpClientModule in the root AppModule and  inject the HttpClient into an application class
+import { HttpClientModule } from '@angular/common/http'; 
+//Import the Angular HttpClientModule in the root AppModule and  inject the HttpClient into an application class
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component'; 
 import { ReactiveFormsModule } from '@angular/forms';

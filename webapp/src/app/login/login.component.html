@@ -1,51 +1,175 @@
-<div class = "body">
+<div class="split">
 
-  <!-- ****Angular Reactive forms *** -->
-<!--In reactive form, we build our form design in the component class instead of component template file.
+  <div class="card-left">
+    <div class="welcome">
+      <label class="welcome-header-blue">Sign in to Account
+      </label>
+      <label class="line line-blue"></label>
+
+      <label class="welcome-title">
+
+      </label>
+    </div>
+    <form class="form-login" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- This should be in form and not in div tag.-->
+      <div class="form-control">
+        <!--Password field providers-->
+        <div>
+          <input class="input input-login" type="text" placeholder="example@mail.com" formControlName="" />
+        </div>        
+        <div *ngIf="submitted && f.userID.errors" class="error-info">
+          <span *ngIf="f.userID.errors.required"> Enter User ID to login </span>
+          <!-- To display this label only if the field is submited blank -->
+        </div>
+
+        <!--Password field providers-->
+        <div>
+          <input class="input input-login" type="text" placeholder="Password" formControlName="" />
+        </div>
+        <div *ngIf="submitted && f.pwd.errors" class="error-info">
+          <span *ngIf="f.pwd.errors.required"> Enter Password to login </span>
+          <!-- To display this label only if the field is submited blank -->
+        </div>
+
+        <div class="form-login-options">
+          <input class="form-checkbox" type="checkbox" /> Remember
+          Me
+        </div>
+        <div class="form-login-options">
+          <a>Forgot Password?</a>
+        </div>
+        <div>
+          <button class="form-button form-button-login" type="submit">Sign In </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="card-right">
+
+    <!-- ****Angular Reactive forms *** -->
+    <!--In reactive form, we build our form design in the component class instead of component template file.
  This provides us more flexibility, keep your logic in component class file, 
  instead of component template file. This makes our component template clean and simple. -->
+    <div class="welcome" [ngClass]="{'adjust' : !showHideSignupSection }">
+      <label class="welcome-header">Hello, Buddy! Welcome to Socialize.
+      </label>
+      <label class="line line-white"></label>
+
+      <label class="welcome-title">
+        Fill up your personal information and let's start your journey with us.
+        We are excited!
+      </label>
+
+      <div>
+        <button *ngIf="showHideSignupSection" class="signup-signin-button animated zoomInUp faster"
+          (click)="triggerSignUp($event)"> Sign Up</button>
+      </div>
+    </div>
+
+    <form *ngIf="showForm" [ngClass]="{'form-signup' : showForm}" [formGroup]="signupForm" (ngSubmit)="onSignUp()">
+      <!-- This should be in form and not in div tag. -->
+      <div class="form-control">
+        <!-- User Name field providers -->
+        <div>
+          <input class="input input-signup" type="text" placeholder="Email ID" maxlength="15" formControlName="name"
+            [ngClass]="{ 'is-invalid' : submitted && f.emailId.errors }" />
+        </div>
+        <div *ngIf="submitted && f.emailId.errors" class="error-info">
+          <span *ngIf="f.emailId.errors.required"> Email ID is required </span>
+          <span *ngIf="!f.emailId.errors.required && f.emailId.errors?.pattern"> Enter a valid Email Id. </span>
+
+          <!-- To display this label only if the field is submited blank -->
+
+        </div>
+
+        <!-- User ID field providers -->
+        <div>
+          <input class="input input-signup" type="text" placeholder="User ID" maxlength="15" formControlName="userID"
+            [ngClass]="{ 'is-invalid' : submitted && f.userID.errors }" />
+        </div>
+        <div *ngIf="submitted && f.userID.errors" class="error-info">
+          <span *ngIf="f.userID.errors.required"> User ID is required </span>
+          <!-- To display this label only if the field is submited blank -->
+        </div>
 
 
- <form class = "login-signup-form" [formGroup] = "loginForm" (ngSubmit) = "onSubmit()"> <!-- This should be in form and not in div tag. -->
-  <div>
-    <input class = "login-input" type="text" placeholder = "First Name" formControlName = "firstName" />
-  </div>
-  <div >
-    <input class = "login-input" type="text" placeholder = "Last Name" formControlName = "lastName" />
-  </div>
-  <div >
-    <input class = "login-input" type="text" placeholder = "User Name" formControlName = "userName"   />
-    <div *ngIf = "loginForm.controls.userName.errors" >
-      <span *ngIf = "loginForm.controls.userName.errors.required" class = "error-info">Username is Required   </span>
-    </div>
-  </div>
-  <div formGroupName="pwd">
-    <div>
-      <input class = "login-input" type = "password" placeholder = "Password" formControlName = "password" required/>
-    </div>
-    <div>
-      <input class = "login-input" type = "password" placeholder = "Confirm Password" formControlName = "confirmPassword" required/>
-    </div>
-  </div>
-  <div>
-    <input class = "login-input" type="date" placeholder = "Date of Birth" formControlName = "dob" />
-  </div>
-  <div >
-    <select class = "login-input" placeholder = "Gender" formControlName = "genders" >
-      <option *ngFor="let eachGender of genderList" >{{eachGender}}</option>
-    </select>
-  </div>
-  <div >
-    <select  *ngIf = "countriesList" class = "login-input" placeholder = "Country" formControlName = "country" >
-      <option *ngFor="let key of countriesList">{{key}}</option>
-    </select>
-  </div>
-  <div>
-    <button type = "submit">SignUp</button>
-    <button type = "submit">Login</button>
-  </div>
+        <div formGroupName="password">
+          <!-- Password field providers -->
+          <div>
+            <input class="input input-signup" type="password" placeholder="Password" maxlength="20"
+              formControlName="pwd" [ngClass]="{ 'is-invalid' : submitted && f.password.controls.pwd.errors }" />
+          </div>
+          <div *ngIf="submitted && f.password.controls.pwd.errors" class="error-info">
+            <span *ngIf="f.password.controls.pwd.errors.required"> Password is required </span>
+            <!-- To display this label only if the field is submited blank -->
+            <span *ngIf="!f.password.controls.pwd.errors.required && f.password.controls.pwd.errors?.minlength">
+              Password must be atleast 6 charactrers long </span>
+            <span
+              *ngIf="!f.password.controls.pwd.errors.required && f.password.controls.pwd.errors?.pattern && !f.password.controls.pwd.errors?.minlength">
+              Password must include atleast one upper case letter, one lower case letter and one numeric digit. </span>
+          </div>
 
-</form>
+          <!--Confirm Password field providers -->
+          <div>
+            <input class="input input-signup" type="password" maxlength="20" placeholder="Confirm Password"
+              formControlName="confirmPwd"
+              [ngClass]="{ 'is-invalid' : submitted && f.password.controls.confirmPwd.errors }" />
+          </div>
+          <div *ngIf="submitted && f.password.controls.confirmPwd.errors" class="error-info">
+            <span *ngIf="f.password.controls.confirmPwd.errors.required"> Confirm Password is required </span>
+            <!-- To display this label only if the field is submited blank -->
+            <!-- <span *ngIf = "!f.password.controls.confirmPwd.errors.required &&
+                    f.password.controls.confirmPwd.value === f.password.controls.pwd.value"> Confirm Password must be same as Password </span>  To display this label only if the field is submited blank -->
+            <span
+              *ngIf="!f.password.controls.confirmPwd.errors.required && f.password.controls.confirmPwd.errors?.mismatch ">
+              {{f.password.controls.confirmPwd.errors?.mismatch | json}} Confirm Password must be same as Password
+            </span> <!-- To display this label only if the field is submited blank -->
+          </div>
+        </div>
+
+        <!--Date Of Birth field providers -->
+        <div>
+          <input class="input input-signup" type="date" placeholder="Date of Birth" formControlName="dob"
+            [ngClass]="{ 'is-invalid' : submitted && f.dob.errors }" />
+        </div>
+        <div *ngIf="submitted && f.dob.errors" class="error-info">
+          <span *ngIf="f.dob.errors.required"> Date Of Birth is required </span>
+          <!-- To display this label only if the field is submited blank -->
+        </div>
+
+        <!--Gender Select providers -->
+        <div>
+          <select class="input form-dropdown" placeholder="Gender" formControlName="genders"
+            (change)="onChangeGender($event)" [ngClass]="{ 'is-invalid' : submitted && f.genders.errors }">
+            <option value="" selected="selected">--Select Gender--</option>
+            <option *ngFor="let eachGender of genderList">{{eachGender}}</option>
+          </select>
+        </div>
+        <div *ngIf="submitted && f.genders.errors" class="error-info">
+          <span *ngIf="f.genders.errors.required"> Select the gender from dropdown </span>
+          <!-- To display this label only if the field is submited blank -->
+        </div>
+
+        <div>
+          <select *ngIf="countriesList" class="input input-signup" placeholder="Country" formControlName="country">
+            <option *ngFor="let key of countriesList">{{key}}</option>
+          </select>
+        </div>
+
+
+        <div style="text-align:center">
+          <label class="form-terms">By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy. </label>
+          <button class="form-button form-button-signup" type="submit">Create Account</button>
+          <label class="form-button-separation"> OR </label>
+          <button class="form-button form-button-signup" type="submit">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            Login with Google</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
 
 </div>
-

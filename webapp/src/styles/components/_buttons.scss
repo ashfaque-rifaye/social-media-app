@@ -1,0 +1,145 @@
+.form-button {
+  text-decoration: none;
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5rem;
+  font-weight: 600;
+
+  &-login {
+    background: $primary-blue-login;
+    color: #ffff;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      box-shadow: 0 0.3rem 0.8rem #ffff;
+    }
+  }
+
+  &-signup {
+    background: #ffff;
+    color: $primary-blue-login;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      box-shadow: 0 0.3rem 0.8rem #3930d9;
+    }
+  }
+}
+
+.form-button-login:hover,
+.form-button-signup:hover {
+  transform: translateY(-0.5rem);
+  transition: 0.1s;
+  box-shadow: 0 0.3rem 0.8rem #3930d9;
+  cursor: pointer;
+}
+
+.form-button-login:active,
+.form-button-signup:active {
+  transform: translateY(0.3rem);
+  transition: 0.1s;
+}
+
+.signup-signin-button {
+  text-decoration: none;
+  border: 1.5px solid #ffff;
+  border-radius: 20px;
+  width: 25rem;
+  width: 20rem;
+  height: 4rem;
+  background: none;
+  color: #ffffff;
+  font-weight: 600;
+
+  &:hover {
+    transform: translateY(-1rem);
+    box-shadow: 0 0.3rem 0.8rem #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(-0.3rem);
+    box-shadow: none;
+    animation-name: fadeOpacity;
+    animation-timing-function: ease-out;
+  }
+}
+
+@-webkit-keyframes fadeOpacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOpacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.form-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #3930d9;
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #bbc;
+    border-radius: 1rem;
+    top: 0.05rem;
+    left: 0.06rem;
+    transition: 0.3s;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:checked {
+    &::after {
+      background: #3930d9;
+      left: calc(100% - 5px);
+      transform: translateX(-70%);
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.form-dropdown {
+  border: 0 !important;
+  /*Removes border*/
+  -webkit-appearance: none; /*Removes default chrome and safari style*/
+  -moz-appearance: none; /*Removes default style Firefox*/
+}
